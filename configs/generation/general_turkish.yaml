@@ -1,0 +1,46 @@
+# ============================================================================
+# General Turkish Educational — Generation Config
+# ============================================================================
+# Phase 1 training data: broad academic subjects in Turkish
+# Goal: Teach the model Turkish explanation quality, not domain knowledge
+
+# Target dataset size (start small, scale after eval)
+target_count: 500
+domain: general_educational
+
+# Answer length tier token budgets
+tier_budgets:
+  short: 180
+  medium: 400
+  long: 650
+  list: 450
+
+# Tier distribution weights (must sum to 1.0)
+tier_weights:
+  short: 0.20
+  medium: 0.35
+  long: 0.35
+  list: 0.10
+
+# Worker settings
+parallel_workers: 20
+batch_size: 20
+
+# Provider
+provider: gemini
+model: gemini-2.5-flash
+temperature: 0.7
+
+# Web search for context
+search_enabled: true
+
+# Pedagogical evolution scenarios (max 8, focused on education)
+scenarios:
+  - "Bu soruyu bir üniversite öğrencisinin sınava çalışırken soracağı şekilde yeniden yaz. Net ve odaklı olsun."
+  - "Bu soruyu kavramı ilk kez duyan meraklı bir öğrenci gibi sor. 'Neden?' ve 'Nasıl?' vurgulu olsun."
+  - "Bu soruyu iki kavramı karşılaştırmak isteyen biri gibi sor. Farkları ve benzerlikleri merak etsin."
+  - "Bu soruyu sınav tekrarı yapan ve konuyu özetlemek isteyen biri gibi sor."
+  - "Bu soruyu pratik bir uygulama arayan biri gibi sor. Teoriyi gerçek hayata bağlasın."
+  - "Bu soruyu bir tartışmada argüman arayan biri gibi sor. Lehte ve aleyhte noktalar merak etsin."
+  - "Bu soruyu adım adım öğrenmek isteyen biri gibi sor. Yapılandırılmış bir açıklama beklesin."
+  - "Bu soruyu bir öğretmenin öğrencilerine sormak isteyeceği şekilde yeniden yaz."

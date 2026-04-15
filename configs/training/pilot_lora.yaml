@@ -1,0 +1,47 @@
+# ============================================================================
+# Pilot LoRA Training Config
+# ============================================================================
+# First training run: small dataset, fast iteration, verify pipeline works
+# Hardware: RTX 5080 16GB, Ryzen 9800X3D, 64GB DDR5
+
+# Model
+base_model: mistralai/Mistral-7B-Instruct-v0.3
+
+# Data
+data_path: data/training/instruct.jsonl
+max_seq_length: 768
+eval_ratio: 0.05
+
+# Training
+epochs: 2.0
+learning_rate: 4.0e-5
+batch_size: 8
+gradient_accumulation: 2
+warmup_ratio: 0.05
+weight_decay: 0.01
+max_grad_norm: 0.3
+
+# Quantization (QLoRA)
+use_4bit: true
+
+# Quality boosts
+use_neftune: true
+neftune_alpha: 5.0
+
+# LoRA adapter
+lora:
+  r: 64
+  alpha: 128
+  dropout: 0.05
+  target_modules:
+    - q_proj
+    - k_proj
+    - v_proj
+    - o_proj
+    - gate_proj
+    - up_proj
+    - down_proj
+  use_dora: false
+
+# Output
+output_dir: runs/pilot_001

@@ -1,0 +1,91 @@
+# Project Blank — Turkish Educational LLM Fine-Tuning System
+
+A clean, modular system for fine-tuning a 7B-class language model on Turkish educational content, with planned specialization toward law-study assistance.
+
+## Project Scope
+
+**This project is:**
+- A Turkish educational LLM fine-tuning system
+- Built around Mistral-7B-Instruct-v0.3 (or compatible 7B model)
+- Focused on explanation quality, concept comparison, and structured study assistance
+- Later adaptable toward law-study exam preparation
+- Designed for local deployment: train → evaluate → quantize → run locally
+
+**This project is NOT:** a general chatbot, a web search assistant, a multimodal system, a professional legal advisor, or a universal tutor.
+
+## Quick Start
+
+```bash
+# 1. Install uv (if not already installed)
+pip install uv
+
+# 2. Create venv and install dependencies
+uv venv
+uv pip install -e ".[dev]"
+
+# 3. Copy and fill in environment variables
+copy .env.example .env
+# Edit .env with your API keys
+
+# 4. Verify environment
+python -m project_blank doctor
+
+# 5. See available commands
+python -m turkish_tutor --help
+```
+
+Or on Windows, use the convenience scripts:
+```cmd
+tools\setup_env.bat    &:: One-time setup
+tools\run.bat doctor   &:: Run any command
+```
+
+## Architecture
+
+```
+src/project_blank/     Python package (all source code)
+configs/               YAML config files
+data/                  Data pipeline stages (seeds → raw → processed → training)
+runs/                  Training run outputs (per-experiment)
+models/                Exported models (merged, quantized)
+docs/                  Documentation
+tools/                 BAT convenience wrappers (thin, no logic)
+tests/                 pytest test suite
+```
+
+## Pipeline Phases
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| 0. Skeleton | Project structure, CLI, config, tooling | ✅ Current |
+| 1. Data schemas | Pydantic models, tier system | ✅ Current |
+| 2. Utils | Text processing, Turkish cleaning | 🔲 Next |
+| 3. Generation | Synthetic data pipeline | 🔲 Planned |
+| 4. Training | LoRA/QLoRA fine-tuning | 🔲 Planned |
+| 5. Evaluation | Benchmark-based eval | 🔲 Planned |
+| 6. Quantization | GGUF export | 🔲 Planned |
+| 7. Deployment | Local chat interface | 🔲 Planned |
+
+## Development
+
+```bash
+# Run tests
+pytest
+
+# Lint + format
+ruff check src/ tests/
+ruff format src/ tests/
+
+# Type check
+pyright
+
+# Pre-commit (all checks)
+pre-commit run --all-files
+```
+
+## Hardware Target
+
+- GPU: NVIDIA RTX 5080 (16 GB VRAM)
+- CPU: AMD Ryzen 9800X3D
+- RAM: 64 GB DDR5
+- OS: Windows 11
