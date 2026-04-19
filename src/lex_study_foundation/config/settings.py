@@ -6,11 +6,10 @@ injection or by importing ``get_settings()``.
 
 Usage::
 
-    from project_blank.config.settings import get_settings
+    from lex_study_foundation.config.settings import get_settings
 
     settings = get_settings()
-    print(settings.active_provider)
-    print(settings.base_model)
+    print(settings.gemini_api_key)
 """
 
 from __future__ import annotations
@@ -18,12 +17,11 @@ from __future__ import annotations
 import logging
 from functools import lru_cache
 from pathlib import Path
-from typing import Literal
 
 from pydantic import Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from project_blank.utils.paths import PROJECT_ROOT
+from lex_study_foundation.utils.paths import PROJECT_ROOT
 
 logger = logging.getLogger(__name__)
 
@@ -48,20 +46,10 @@ class Settings(BaseSettings):
         default="",
         description="Comma-separated Gemini API keys for rotation",
     )
-    openai_api_key: str = Field(
-        default="",
-        description="OpenAI API key",
-    )
-
-    # ── Provider ────────────────────────────────────────────────────────
-    active_provider: Literal["gemini", "openai"] = Field(
-        default="gemini",
-        description="Which LLM provider to use for data generation",
-    )
 
     # ── Model ───────────────────────────────────────────────────────────
     base_model: str = Field(
-        default="mistralai/Mistral-7B-Instruct-v0.3",
+        default="google/gemma-4-E4B-it",
         description="HuggingFace model ID or local path for the base model",
     )
 
@@ -93,7 +81,7 @@ class Settings(BaseSettings):
     @property
     def has_api_keys(self) -> bool:
         """Check if at least one API key is configured."""
-        return bool(self.gemini_keys or self.openai_api_key)
+        return bool(self.gemini_keys)
 
     @property
     def env_file_exists(self) -> bool:

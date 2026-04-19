@@ -63,7 +63,7 @@ class Message(BaseModel):
 class TrainingExample(BaseModel):
     """A complete training example with metadata.
 
-    The ``messages`` field follows the Mistral v0.3 chat format:
+    The ``messages`` field follows the standard chat format:
     [system, user, assistant] with alternating user/assistant turns.
     """
 

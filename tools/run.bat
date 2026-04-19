@@ -10,4 +10,4 @@ if not exist ".venv\Scripts\activate.bat" (
 )
 
 call .venv\Scripts\activate.bat
-python -m project_blank %*
+python -m lex_study_foundation %*

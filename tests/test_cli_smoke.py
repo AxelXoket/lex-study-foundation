@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typer.testing import CliRunner
 
-from project_blank.cli import app
+from lex_study_foundation.cli import app
 
 runner = CliRunner()
 
