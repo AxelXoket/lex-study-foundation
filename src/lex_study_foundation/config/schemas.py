@@ -6,7 +6,7 @@ errors are caught before any expensive operations begin.
 
 Usage::
 
-    from project_blank.config.schemas import load_generation_config
+    from lex_study_foundation.config.schemas import load_generation_config
 
     config = load_generation_config("configs/generation/general_turkish.yaml")
 """
@@ -90,7 +90,7 @@ class TrainingConfig(BaseModel):
     """Configuration for LoRA fine-tuning."""
 
     # Model
-    base_model: str = Field(default="mistralai/Mistral-7B-Instruct-v0.3")
+    base_model: str = Field(default="google/gemma-4-E4B-it")
 
     # Data
     data_path: str = Field(default="data/training/instruct.jsonl")

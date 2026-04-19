@@ -1,4 +1,4 @@
-"""CLI entrypoint for Project Blank.
+"""CLI entrypoint for Lex Study Foundation.
 
 All commands are visible-console-first on Windows. No hidden subprocesses,
 no ``pythonw``, no swallowed stdout/stderr. Progress, errors, and logs
@@ -6,14 +6,14 @@ are always printed to the active terminal.
 
 Usage::
 
-    python -m project_blank --help
-    python -m project_blank doctor
-    python -m project_blank paths
-    python -m project_blank validate-config configs/generation/general_turkish.yaml
+    python -m lex_study_foundation --help
+    python -m lex_study_foundation doctor
+    python -m lex_study_foundation paths
+    python -m lex_study_foundation validate-config configs/generation/general_turkish.yaml
 
 Or via the installed script::
 
-    project-blank doctor
+    lex-study-foundation doctor
 """
 
 from __future__ import annotations
@@ -25,13 +25,19 @@ from pathlib import Path
 import typer
 from rich.table import Table
 
-from project_blank import __version__
-from project_blank.utils.console import console, path_tree, print_header, print_kv, status_table
-from project_blank.utils.paths import CONFIGS_DIR, ensure_dirs, get_all_paths
+from lex_study_foundation import __version__
+from lex_study_foundation.utils.console import (
+    console,
+    path_tree,
+    print_header,
+    print_kv,
+    status_table,
+)
+from lex_study_foundation.utils.paths import CONFIGS_DIR, ensure_dirs, get_all_paths
 
 # ── Typer app ───────────────────────────────────────────────────────────────
 app = typer.Typer(
-    name="project-blank",
+    name="lex-study-foundation",
     help="Turkish Educational LLM Fine-Tuning System",
     no_args_is_help=True,
     rich_markup_mode="rich",
@@ -45,10 +51,10 @@ app = typer.Typer(
 @app.command()
 def doctor() -> None:
     """Check environment health and report readiness status."""
-    from project_blank.config.settings import get_settings
-    from project_blank.utils.gpu import detect_gpu
+    from lex_study_foundation.config.settings import get_settings
+    from lex_study_foundation.utils.gpu import detect_gpu
 
-    print_header("Project Blank — Doctor")
+    print_header("Lex Study Foundation — Doctor")
     checks: list[tuple[str, str, str]] = []
 
     # 1. Python version
@@ -77,12 +83,7 @@ def doctor() -> None:
 
     # 4. API keys
     if settings.has_api_keys:
-        key_detail_parts = []
-        if settings.gemini_keys:
-            key_detail_parts.append(f"Gemini: {len(settings.gemini_keys)} key(s)")
-        if settings.openai_api_key:
-            key_detail_parts.append("OpenAI: configured")
-        checks.append(("API keys", "✓", ", ".join(key_detail_parts)))
+        checks.append(("API keys", "✓", f"Gemini: {len(settings.gemini_keys)} key(s)"))
     else:
         checks.append(("API keys", "⚠", "none configured — needed for data generation"))
 
@@ -138,7 +139,7 @@ def doctor() -> None:
 @app.command()
 def info() -> None:
     """Print project metadata, version, and platform info."""
-    print_header("Project Blank — Info")
+    print_header("Lex Study Foundation — Info")
     print_kv("Version", __version__)
     print_kv("Python", platform.python_version())
     print_kv("Platform", f"{platform.system()} {platform.release()}")
@@ -154,7 +155,7 @@ def info() -> None:
 @app.command()
 def paths() -> None:
     """Print all resolved project directory paths."""
-    print_header("Project Blank — Paths")
+    print_header("Lex Study Foundation — Paths")
     console.print()
     console.print(path_tree(get_all_paths()))
     console.print()
@@ -174,9 +175,9 @@ def validate_config(
     ),
 ) -> None:
     """Load and validate a YAML config file against its schema."""
-    from project_blank.config.schemas import load_generation_config, load_training_config
+    from lex_study_foundation.config.schemas import load_generation_config, load_training_config
 
-    print_header("Project Blank — Config Validation")
+    print_header("Lex Study Foundation — Config Validation")
 
     p = Path(config_path)
     if not p.is_file():

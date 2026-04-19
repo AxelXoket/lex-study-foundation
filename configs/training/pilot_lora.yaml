@@ -5,7 +5,7 @@
 # Hardware: RTX 5080 16GB, Ryzen 9800X3D, 64GB DDR5
 
 # Model
-base_model: mistralai/Mistral-7B-Instruct-v0.3
+base_model: google/gemma-4-E4B-it
 
 # Data
 data_path: data/training/instruct.jsonl

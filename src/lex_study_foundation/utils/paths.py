@@ -29,7 +29,7 @@ def _find_project_root() -> Path:
     for parent in [current, *current.parents]:
         if (parent / "pyproject.toml").is_file():
             return parent
-    # Fallback: assume src/project_blank/utils/paths.py → 4 levels up
+    # Fallback: assume src/lex_study_foundation/utils/paths.py → 4 levels up
     return current.parent.parent.parent.parent
 
 

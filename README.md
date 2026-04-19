@@ -1,12 +1,13 @@
-# Project Blank — Turkish Educational LLM Fine-Tuning System
+# Lex Study Foundation — Turkish Educational LLM Fine-Tuning System
 
-A clean, modular system for fine-tuning a 7B-class language model on Turkish educational content, with planned specialization toward law-study assistance.
+A clean, modular system for fine-tuning Gemma 4 E4B on Turkish educational content, with planned specialization toward law-study assistance.
 
 ## Project Scope
 
 **This project is:**
 - A Turkish educational LLM fine-tuning system
-- Built around Mistral-7B-Instruct-v0.3 (or compatible 7B model)
+- Built around Google Gemma 4 E4B-it (~4B effective / 8B total params, 128K context)
+- Data generation powered by Gemini 2.5 Flash
 - Focused on explanation quality, concept comparison, and structured study assistance
 - Later adaptable toward law-study exam preparation
 - Designed for local deployment: train → evaluate → quantize → run locally
@@ -28,10 +29,10 @@ copy .env.example .env
 # Edit .env with your API keys
 
 # 4. Verify environment
-python -m project_blank doctor
+python -m lex_study_foundation doctor
 
 # 5. See available commands
-python -m turkish_tutor --help
+python -m lex_study_foundation --help
 ```
 
 Or on Windows, use the convenience scripts:
@@ -43,7 +44,7 @@ tools\run.bat doctor   &:: Run any command
 ## Architecture
 
 ```
-src/project_blank/     Python package (all source code)
+src/lex_study_foundation/     Python package (all source code)
 configs/               YAML config files
 data/                  Data pipeline stages (seeds → raw → processed → training)
 runs/                  Training run outputs (per-experiment)
@@ -57,9 +58,9 @@ tests/                 pytest test suite
 
 | Phase | Description | Status |
 |-------|-------------|--------|
-| 0. Skeleton | Project structure, CLI, config, tooling | ✅ Current |
-| 1. Data schemas | Pydantic models, tier system | ✅ Current |
-| 2. Utils | Text processing, Turkish cleaning | 🔲 Next |
+| 0. Skeleton | Project structure, CLI, config, tooling | ✅ Done |
+| 1. Data schemas | Pydantic models, tier system | ✅ Done |
+| 2. Utils | Text processing, IO layer, behavioral spec | ✅ Done |
 | 3. Generation | Synthetic data pipeline | 🔲 Planned |
 | 4. Training | LoRA/QLoRA fine-tuning | 🔲 Planned |
 | 5. Evaluation | Benchmark-based eval | 🔲 Planned |

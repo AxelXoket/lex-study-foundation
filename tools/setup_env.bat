@@ -2,7 +2,7 @@
 chcp 65001 >nul 2>&1
 echo.
 echo ============================================================
-echo   Project Blank - Environment Setup
+echo   Lex Study Foundation - Environment Setup
 echo ============================================================
 echo.
 
@@ -34,8 +34,8 @@ echo   Setup complete!
 echo ============================================================
 echo.
 echo   Activate venv:  .venv\Scripts\activate.bat
-echo   Run CLI:        python -m project_blank --help
-echo   Run doctor:     python -m project_blank doctor
+echo   Run CLI:        python -m lex_study_foundation --help
+echo   Run doctor:     python -m lex_study_foundation doctor
 echo   Run tests:      pytest
 echo.
 pause
