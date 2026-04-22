@@ -59,3 +59,44 @@ Shared text-normalization and JSONL/IO layers built, tested, and verified.
 - Atomic writes work correctly on Windows
 
 ---
+
+## 2026-04-22 (Tuesday) — 02:30 — ml-intern Companion Dashboard
+
+### Separate Repo: `ml-intern` — Hardened Architecture ✅
+
+`ml-intern` companion dashboard restructured from scratch. Migrated from a flat `app/` + `pip`
+layout to a properly packaged, security-hardened, `uv`-based project with strict repo boundaries.
+
+**What was done:**
+- `app/` → `src/ml_intern/` package layout (hatchling, `src/` layout)
+- Frontend assets moved inside the package (`src/ml_intern/static/`)
+- `pyproject.toml` created — CLI entry point: `ml-intern serve` (Typer, subcommand-based)
+- `uv sync` + `uv tool install -e .` — both dev and global CLI paths verified
+- `git init` + `.gitignore` — `.env`, `.venv`, caches, session artifacts excluded
+- **Split settings:** `IntegrationSettings` (lex connection) + `ResearchProviderSettings` (ml-intern tokens) — same `.env`, clean conceptual boundary
+- **Deterministic `.env` loading:** resolved from package location via `Path(__file__)`, never CWD-dependent. `ML_INTERN_ENV_FILE` override supported.
+- **Subprocess env allowlist:** removed `os.environ.copy()` → only OS runtime vars forwarded. Provider secrets (Anthropic, HF, GitHub, Gemini, OpenAI) protected via **deny list** — raises `RuntimeError` if detected.
+- **Secret redaction:** regex-based pattern matching applied to all output, errors, session summaries
+- **Process kill on cancel:** `process.kill()` + `await process.wait()` — no orphan process risk
+- **Output buffer cap:** max 5000 lines per job
+- **Health state:** `healthy` / `degraded` / `unavailable` enum + `research_status` (disabled/unconfigured/available)
+- **PYTHONPATH test:** lex CLI runs successfully without PYTHONPATH injection — editable install `.pth` mechanism is sufficient
+- **Secret boundary docs:** fully documented in README — which secrets belong where, what is never forwarded, and why
+
+**Security decisions:**
+- ml-intern secrets (Anthropic, HF, GitHub) → belong to ml-intern only, NEVER forwarded to lex subprocesses
+- lex secrets (Gemini) → belong to lex only, lex CLI loads from its own `.env`, ml-intern does not inject
+- `RuntimeError` instead of `assert` — prevents security bypass in Python optimized mode
+- Research mode in V1 is infrastructure/feature-flag only, no real provider-backed features yet
+
+**Verification:**
+- `uv sync` → 27 packages, successful
+- `uv run ml-intern serve` → dashboard loads, Connected status, doctor command executes
+- `uv tool install -e .` → `ml-intern` command works globally
+- `ml-intern` → shows help, `ml-intern serve` → starts server
+- `.env` not staged in git, `.venv` not staged — hygiene clean
+- Subprocess succeeds without PYTHONPATH
+
+**Stack:** Python 3.14, FastAPI, Uvicorn, Typer, Pydantic v2, pydantic-settings, Hatchling, uv
+
+---
