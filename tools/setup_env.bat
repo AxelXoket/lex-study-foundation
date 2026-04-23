@@ -8,10 +8,10 @@ echo.
 
 cd /d "%~dp0\.."
 
-echo [1/3] Creating virtual environment...
-python -m venv .venv
+echo [1/3] Creating virtual environment (Python 3.12)...
+py -3.12 -m venv .venv
 if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Failed to create venv. Is Python 3.11+ installed?
+    echo [ERROR] Failed to create venv. Is Python 3.12 installed?
     pause
     exit /b 1
 )
