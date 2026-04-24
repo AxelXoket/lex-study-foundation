@@ -26,7 +26,7 @@ Project foundation built from scratch. No code migrated from old project.
 - `python -m lex_study_foundation doctor` → functional
 - All CLI commands responsive
 
-**Stack:** Python 3.14, Typer, Rich, Pydantic v2, PyYAML, Hatchling, Ruff, Pytest
+**Stack:** Python 3.12 (originally built on 3.14, migrated to 3.12.10 in Phase 2.5), Typer, Rich, Pydantic v2, PyYAML, Hatchling, Ruff, Pytest
 
 ---
 
@@ -97,6 +97,6 @@ layout to a properly packaged, security-hardened, `uv`-based project with strict
 - `.env` not staged in git, `.venv` not staged — hygiene clean
 - Subprocess succeeds without PYTHONPATH
 
-**Stack:** Python 3.14, FastAPI, Uvicorn, Typer, Pydantic v2, pydantic-settings, Hatchling, uv
+**Stack:** Python 3.12 (originally built on 3.14, migrated to 3.12.10 in Phase 2.5), FastAPI, Uvicorn, Typer, Pydantic v2, pydantic-settings, Hatchling, uv
 
 ---
