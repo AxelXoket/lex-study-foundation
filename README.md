@@ -1,4 +1,18 @@
-# Lex Study Foundation — Turkish Educational LLM Fine-Tuning System
+<p align="center">
+  <h1 align="center">lex-study-foundation</h1>
+  <p align="center">
+    <strong>Turkish Educational LLM Fine-Tuning System</strong>
+  </p>
+  <p align="center">
+    <img src="https://img.shields.io/badge/python-3.12+-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+    <img src="https://img.shields.io/badge/license-GPL--3.0-blue?style=flat-square" alt="License">
+    <img src="https://img.shields.io/badge/model-Gemma_4_E4B-FF6F00?style=flat-square&logo=google&logoColor=white" alt="Gemma">
+    <img src="https://img.shields.io/badge/data-Gemini_2.5_Flash-4285F4?style=flat-square&logo=google&logoColor=white" alt="Gemini">
+    <img src="https://img.shields.io/badge/language-Turkish-red?style=flat-square" alt="Turkish">
+  </p>
+</p>
+
+---
 
 A clean, modular system for fine-tuning Gemma 4 E4B on Turkish educational content, with planned specialization toward law-study assistance.
 
@@ -90,3 +104,7 @@ pre-commit run --all-files
 - CPU: AMD Ryzen 9800X3D
 - RAM: 64 GB DDR5
 - OS: Windows 11
+
+## License
+
+This project is licensed under the GNU General Public License v3.0 — see the [LICENSE](LICENSE) file for details.
