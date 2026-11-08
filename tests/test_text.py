@@ -127,7 +127,7 @@ class TestStripControlChars:
         assert strip_control_chars("col1\tcol2") == "col1\tcol2"
 
     def test_removes_c1_controls(self) -> None:
-        """C1 control characters (U+0080–U+009F) should be removed."""
+        """C1 control characters (U+0080-U+009F) should be removed."""
         # U+0085 (NEXT LINE), U+008A, U+008D
         text = "test\x85\x8a\x8dtext"
         assert strip_control_chars(text) == "testtext"

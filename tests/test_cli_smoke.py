@@ -1,4 +1,4 @@
-"""CLI smoke tests — verify all commands are wired and don't crash."""
+"""CLI smoke tests - verify all commands are wired and don't crash."""
 
 from __future__ import annotations
 

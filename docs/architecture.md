@@ -1,4 +1,4 @@
-# Lex Study Foundation — Architecture
+# Lex Study Foundation - Architecture
 
 See [implementation_plan.md](../implementation_plan.md) for the full architecture document.
 
@@ -32,5 +32,5 @@ seeds/ → raw/ → processed/ → training/
 
 Text normalization and JSONL I/O are centralized:
 
-- `utils/text.py` — NFC normalization, whitespace/newline cleanup, control char stripping, broken-text detection
-- `utils/io.py` — JSONL read/write/append, atomic writes, plain text I/O (all UTF-8)
+- `utils/text.py` - NFC normalization, whitespace/newline cleanup, control char stripping, broken-text detection
+- `utils/io.py` - JSONL read/write/append, atomic writes, plain text I/O (all UTF-8)

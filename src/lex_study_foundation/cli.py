@@ -46,7 +46,7 @@ app = typer.Typer(
 
 
 # ============================================================================
-# doctor — environment health check
+# doctor - environment health check
 # ============================================================================
 @app.command()
 def doctor() -> None:
@@ -54,7 +54,7 @@ def doctor() -> None:
     from lex_study_foundation.config.settings import get_settings
     from lex_study_foundation.utils.gpu import detect_gpu
 
-    print_header("Lex Study Foundation — Doctor")
+    print_header("Lex Study Foundation - Doctor")
     checks: list[tuple[str, str, str]] = []
 
     # 1. Python version
@@ -78,14 +78,14 @@ def doctor() -> None:
     checks.append((
         ".env file",
         "✓" if settings.env_file_exists else "⚠",
-        "found" if settings.env_file_exists else "missing — copy .env.example to .env",
+        "found" if settings.env_file_exists else "missing - copy .env.example to .env",
     ))
 
     # 4. API keys
     if settings.has_api_keys:
         checks.append(("API keys", "✓", f"Gemini: {len(settings.gemini_keys)} key(s)"))
     else:
-        checks.append(("API keys", "⚠", "none configured — needed for data generation"))
+        checks.append(("API keys", "⚠", "none configured - needed for data generation"))
 
     # 5. GPU
     gpu = detect_gpu()
@@ -127,19 +127,19 @@ def doctor() -> None:
     if errors:
         console.print(f"  [error]{errors} error(s) must be fixed before proceeding.[/error]")
     elif warnings:
-        console.print(f"  [warning]{warnings} warning(s) — non-blocking but worth addressing.[/warning]")
+        console.print(f"  [warning]{warnings} warning(s) - non-blocking but worth addressing.[/warning]")
     else:
         console.print("  [success]All checks passed. Environment is ready.[/success]")
     console.print()
 
 
 # ============================================================================
-# info — project metadata
+# info - project metadata
 # ============================================================================
 @app.command()
 def info() -> None:
     """Print project metadata, version, and platform info."""
-    print_header("Lex Study Foundation — Info")
+    print_header("Lex Study Foundation - Info")
     print_kv("Version", __version__)
     print_kv("Python", platform.python_version())
     print_kv("Platform", f"{platform.system()} {platform.release()}")
@@ -150,19 +150,19 @@ def info() -> None:
 
 
 # ============================================================================
-# paths — show resolved project paths
+# paths - show resolved project paths
 # ============================================================================
 @app.command()
 def paths() -> None:
     """Print all resolved project directory paths."""
-    print_header("Lex Study Foundation — Paths")
+    print_header("Lex Study Foundation - Paths")
     console.print()
     console.print(path_tree(get_all_paths()))
     console.print()
 
 
 # ============================================================================
-# validate-config — load and validate a YAML config
+# validate-config - load and validate a YAML config
 # ============================================================================
 @app.command("validate-config")
 def validate_config(
@@ -177,7 +177,7 @@ def validate_config(
     """Load and validate a YAML config file against its schema."""
     from lex_study_foundation.config.schemas import load_generation_config, load_training_config
 
-    print_header("Lex Study Foundation — Config Validation")
+    print_header("Lex Study Foundation - Config Validation")
 
     p = Path(config_path)
     if not p.is_file():
@@ -250,7 +250,7 @@ def validate_config(
 
 
 # ============================================================================
-# Stubs — registered but not yet implemented
+# Stubs - registered but not yet implemented
 # ============================================================================
 
 def _stub(name: str, phase: int) -> None:

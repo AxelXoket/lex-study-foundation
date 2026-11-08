@@ -186,7 +186,7 @@ class TestTextFileIO:
     def test_utf8_roundtrip(self, tmp_path: Path) -> None:
         """Turkish text should survive write/read cycle."""
         fpath = tmp_path / "turkish.txt"
-        text = "Türkiye Cumhuriyeti Anayasası — çğıöşüİÇĞÖŞÜ"
+        text = "Türkiye Cumhuriyeti Anayasası - çğıöşüİÇĞÖŞÜ"
         write_text_file(fpath, text)
         result = read_text_file(fpath)
         assert result == text

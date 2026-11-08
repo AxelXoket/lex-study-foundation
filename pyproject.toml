@@ -62,7 +62,7 @@ lex-study-foundation = "lex_study_foundation.cli:app"
 packages = ["src/lex_study_foundation"]
 
 # ============================================================================
-# Ruff — lint + format
+# Ruff - lint + format
 # ============================================================================
 [tool.ruff]
 target-version = "py311"

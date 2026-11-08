@@ -71,7 +71,7 @@ def normalize_whitespace(text: str) -> str:
     Lines are split by ``\\n``, processed individually, and rejoined.
     Consecutive blank lines are preserved (no aggressive collapse).
 
-    This function does NOT touch newlines themselves — call
+    This function does NOT touch newlines themselves - call
     ``normalize_newlines()`` first if ``\\r\\n`` / ``\\r`` cleanup is needed.
     """
     lines = text.split("\n")
@@ -97,10 +97,10 @@ def normalize_newlines(text: str) -> str:
 def strip_control_chars(text: str) -> str:
     r"""Remove C0/C1 control characters, preserving ``\n`` and ``\t``.
 
-    Removes characters in ranges U+0000–U+0008, U+000B, U+000C,
-    U+000E–U+001F, U+007F, U+0080–U+009F.
+    Removes characters in ranges U+0000-U+0008, U+000B, U+000C,
+    U+000E-U+001F, U+007F, U+0080-U+009F.
 
-    Does NOT preserve ``\r`` — use ``normalize_newlines()`` before this
+    Does NOT preserve ``\r`` - use ``normalize_newlines()`` before this
     function if ``\r`` needs to be converted rather than stripped.
     """
     return _CONTROL_CHAR_RE.sub("", text)
@@ -140,7 +140,7 @@ def is_probably_broken_text(text: str) -> bool:
 
     length = len(text)
 
-    # Count replacement characters (U+FFFD) — strong signal of encoding failure
+    # Count replacement characters (U+FFFD) - strong signal of encoding failure
     replacement_count = text.count("\ufffd")
     if replacement_count > 0 and replacement_count / length > 0.05:
         return True

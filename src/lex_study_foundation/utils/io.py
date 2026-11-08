@@ -123,7 +123,7 @@ def read_jsonl(path: str | Path, *, strict: bool = True) -> Iterator[dict[str, A
                         line_number=line_number,
                         reason=f"invalid JSON: {exc}",
                     ) from exc
-                logger.warning("%s:%d: skipped — invalid JSON: %s", path, line_number, exc)
+                logger.warning("%s:%d: skipped - invalid JSON: %s", path, line_number, exc)
 
 
 def write_jsonl(path: str | Path, records: list[dict[str, Any]]) -> None:

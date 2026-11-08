@@ -6,10 +6,10 @@ and every training sample passes through these schemas.
 
 Tier system (answer-only token budgets)::
 
-    short:   ≤180 tokens  — 1-2 sentences, direct answer
-    medium:  ≤400 tokens  — 3-5 sentences, balanced explanation
-    long:    ≤650 tokens  — 1-2 paragraphs with examples
-    list:    ≤450 tokens  — numbered/bulleted items
+    short:   ≤180 tokens  - 1-2 sentences, direct answer
+    medium:  ≤400 tokens  - 3-5 sentences, balanced explanation
+    long:    ≤650 tokens  - 1-2 paragraphs with examples
+    list:    ≤450 tokens  - numbered/bulleted items
 """
 
 from __future__ import annotations

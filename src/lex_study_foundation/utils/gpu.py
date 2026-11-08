@@ -1,7 +1,7 @@
 """GPU detection utilities.
 
 Designed to be import-safe even when torch is not installed.
-Phase 1 does not require torch — this module gracefully degrades.
+Phase 1 does not require torch - this module gracefully degrades.
 """
 
 from __future__ import annotations
